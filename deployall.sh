@@ -6,20 +6,20 @@ eval $(minikube docker-env)
 
 # Build products-service
 pushd products-service
-docker build . -t products-service:v1
+docker build . -t products-service:v1 -f deploy/Dockerfile
 
 # Deploy products-service
-kubectl apply -f deployment.yml
-kubectl apply -f service.yml
+kubectl apply -f deploy/deployment.yml
+kubectl apply -f deploy/service.yml
 
 popd
 
 # Build cart-service
 pushd cart-service
-docker build . -t cart-service:v1
+docker build . -t cart-service:v1 -f deploy/Dockerfile
 
 # Deploy cart-service
-kubectl apply -f deployment.yml
-kubectl apply -f service.yml
+kubectl apply -f deploy/deployment.yml
+kubectl apply -f deploy/service.yml
 
 popd

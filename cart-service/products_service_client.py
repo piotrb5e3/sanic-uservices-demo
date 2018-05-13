@@ -2,8 +2,8 @@ import aiohttp
 import json
 import os
 
-service_host = os.environ['PRODUCTS_SERVICE_SERVICE_HOST']
-service_port = os.environ['PRODUCTS_SERVICE_SERVICE_PORT']
+service_host = os.environ.get('PRODUCTS_SERVICE_SERVICE_HOST', default="")
+service_port = os.environ.get('PRODUCTS_SERVICE_SERVICE_PORT', default="")
 
 url_template = 'http://{host}:{port}/{{id}}'.format(
     host=service_host, port=service_port)
