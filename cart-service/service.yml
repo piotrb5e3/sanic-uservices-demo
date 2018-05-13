@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart-service
+  labels:
+    run: cart-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8001
+    protocol: TCP
+    name: http
+  selector:
+    app: cart-service
