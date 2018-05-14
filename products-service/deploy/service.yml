@@ -4,11 +4,19 @@ metadata:
   name: products-service
   labels:
     run: products-service
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  products_service_mapping
+      prefix: /products/
+      service: products-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-  - port: 8002
+  - port: 80
+    targetPort: 8002
     protocol: TCP
-    name: http
   selector:
     app: products-service

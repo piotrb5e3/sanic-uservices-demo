@@ -1,4 +1,3 @@
-import json
 from service import app
 
 
@@ -12,11 +11,10 @@ def test_all_prooducts():
 def test_single_product():
     request, response = app.test_client.get('/0')
     assert response.status == 200
-    response_body = json.loads(response.body)
-    assert response_body['id'] == 0
-    assert response_body['name'] == 'spanner 3/4"'
-    assert response_body['description'] == 'a 3/4 tool steel spanner'
-    assert response_body['price'] == 200
+    assert response.json['id'] == 0
+    assert response.json['name'] == 'spanner 3/4"'
+    assert response.json['description'] == 'a 3/4 tool steel spanner'
+    assert response.json['price'] == 200
 
 
 def test_product_does_not_exist():

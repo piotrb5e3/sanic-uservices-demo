@@ -4,11 +4,19 @@ metadata:
   name: cart-service
   labels:
     run: cart-service
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  cart_service_mapping
+      prefix: /cart/
+      service: cart-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-  - port: 8001
+  - port: 80
+    targetPort: 8001
     protocol: TCP
-    name: http
   selector:
     app: cart-service
